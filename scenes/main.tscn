@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c55vgae17jxfi"]
+[gd_scene load_steps=3 format=3 uid="uid://c55vgae17jxfi"]
 
 [ext_resource type="Script" uid="uid://b3t8q8i8jsfwa" path="res://scenes/uploadImage.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://bmnaya8wqb2gl" path="res://scenes/color_change_module.gd" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0wfyh")
+
+[node name="ColorChangeModule" type="Node" parent="."]
+script = ExtResource("2_0wfyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(300, 200)
@@ -34,6 +38,11 @@ offset_left = 805.0
 offset_top = 1.0
 offset_right = 845.0
 offset_bottom = 41.0
+
+[node name="NFTContainer" type="VBoxContainer" parent="."]
+offset_left = 820.0
+offset_right = 860.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="UploadButton" to="." method="_on_upload_button_pressed"]
 [connection signal="pressed" from="CloneButton" to="." method="_on_clone_button_pressed"]
