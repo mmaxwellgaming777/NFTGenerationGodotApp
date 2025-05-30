@@ -10,8 +10,10 @@ var NFTLayer = 0
 var NFTCount = 1
 
 func _ready():
+	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images", "*.jpeg ; JPEG Images"]
+	file_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	file_dialog.connect("file_selected", _on_file_selected)
 	
 
