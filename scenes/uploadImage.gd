@@ -12,12 +12,12 @@ var NFTLayer = 0
 var NFTCount = 1
 
 func _ready():
+	
 	upload_file_dialog.file_mode = FileDialog.ACCESS_FILESYSTEM
 	upload_file_dialog.access = FileDialog.FILE_MODE_OPEN_FILE
 	upload_file_dialog.use_native_dialog = true
 	upload_file_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
-	#upload_file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images", "*.jpeg ; JPEG Images"]
-	upload_file_dialog.filters = ["*.png ; PNG Images"]
+	upload_file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images", "*.jpeg ; JPEG Images"]
 	upload_file_dialog.connect("file_selected", _on_file_selected)
 	
 	save_dialog.access = FileDialog.FILE_MODE_OPEN_DIR
@@ -27,7 +27,7 @@ func _ready():
 	save_dialog.title = "Choose a folder to save files into"
 	#save_dialog.filters = ["*.* ; Any File"]
 	#save_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
-	save_dialog.connect("file_selected", _on_save_path_chosen)
+	save_dialog.connect("dir_selected", Callable(self, "_on_save_path_chosen"))
 	
 
 func _on_file_selected(path):
@@ -45,9 +45,11 @@ func _on_file_selected(path):
 
 
 func _on_upload_button_pressed() -> void:
+	upload_file_dialog.current_path = ""
 	upload_file_dialog.popup_centered()
 	
 func _on_save_path_chosen(path: String) -> void:
+	print(path)
 	var image = Image.new()
 	var error = image.load("user://NFTLayer%d.png" % NFTLayer)
 	var textureRect = TextureRect.new()
